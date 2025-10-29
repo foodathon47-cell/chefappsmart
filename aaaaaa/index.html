@@ -20,6 +20,13 @@
       color: #b35800;
     }
 
+    header img {
+      width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px auto;
+    }
+
     header h1 {
       margin: 0;
       font-size: 2.5rem;
@@ -45,7 +52,10 @@
       margin-bottom: 30px;
     }
 
-    .grocery-list {
+    .grocery-list,
+    .recipe-section,
+    .health-rating,
+    .allergy-warning {
       background: #fff;
       border-radius: 12px;
       padding: 20px 30px;
@@ -53,7 +63,10 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     }
 
-    .grocery-list h2 {
+    .grocery-list h2,
+    .recipe-section h2,
+    .health-rating h2,
+    .allergy-warning h2 {
       color: #b35800;
       text-align: center;
     }
@@ -68,53 +81,17 @@
       gap: 1.5rem;
     }
 
-    .card {
+    .recipe-card {
       background: #fff4e6;
       border-radius: 10px;
       padding: 15px 20px;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      transition: transform 0.2s;
     }
 
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .card h3 {
+    .recipe-card h3 {
       color: #b35800;
       margin-top: 0;
       text-align: center;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 100;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.8);
-    }
-
-    .modal-content {
-      background: #fff;
-      margin: 5% auto;
-      padding: 20px;
-      width: 90%;
-      border-radius: 10px;
-      max-height: 90%;
-      overflow-y: auto;
-    }
-
-    .close {
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
     }
 
     footer {
@@ -125,14 +102,24 @@
       color: #b35800;
     }
 
+    .health-rating {
+      background: #e8f7e8;
+      border: 1px solid #c3e6c4;
+    }
+
+    .allergy-warning {
+      background: #ffe8e8;
+      border: 1px solid #e6c3c3;
+      color: #a80000;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="./smartcheflogo.png" alt="Smart Chef Logo" style="height: 80px; display:block; margin: 0 auto 10px;">
+    <img src="smartcheflogo.png" alt="Smart Chef Logo">
     <h1>Smart Chef 🍳</h1>
-    <p>This site will help you search for interesting recipes and choose healthier food.</p>
+    <p>This site will help you search for interesting recipes and help you choose healthier food.</p>
   </header>
 
   <main class="container">
@@ -161,120 +148,68 @@
 
     <section class="recipe-section">
       <h2>🍰 Recipes</h2>
-      <div class="recipes" id="recipeCards">
-        <!-- Recipe cards will be generated here by JS -->
+      <div class="recipes">
+
+        <div class="recipe-card">
+          <h3>Muffins</h3>
+          <p><strong>Ingredients:</strong></p>
+          <ul>
+            <li>2 eggs</li>
+            <li>125 ml of oil</li>
+            <li>250 ml of milk</li>
+            <li>200 g of sugar</li>
+            <li>400 g of flour</li>
+            <li>1 baking powder</li>
+          </ul>
+          <p><strong>Instructions:</strong> Mix all ingredients and bake for 15 minutes at 185 °C.</p>
+        </div>
+
+        <div class="recipe-card">
+          <h3>Simple Chocolate Cake</h3>
+          <p><strong>Ingredients:</strong></p>
+          <ul>
+            <li>2 eggs</li>
+            <li>200 ml milk</li>
+            <li>150 g sugar</li>
+            <li>100 ml oil</li>
+            <li>1 tsp baking powder</li>
+            <li>100 g melted chocolate</li>
+            <li>200 g flour</li>
+          </ul>
+          <p><strong>Instructions:</strong> Mix wet and dry ingredients separately, combine, bake at 180 °C for 30 min.</p>
+        </div>
+
+        <div class="recipe-card">
+          <h3>Pizza Dough</h3>
+          <ul>
+            <li>1 tbsp sugar</li>
+            <li>25 g yeast</li>
+            <li>3 tbsp olive oil</li>
+            <li>1 tsp salt</li>
+            <li>310 g flour</li>
+            <li>230 ml warm water (45 °C)</li>
+          </ul>
+          <p>Mix, knead, rest 10 min, then bake at 220 °C for 15 min.</p>
+        </div>
+
       </div>
     </section>
 
-  </main>
+    <section class="health-rating">
+      <h2>💚 Health Rating</h2>
+      <p>This list provides a base for healthy recipe suggestions. Try using less sugar and oil, and add more vegetables for a balanced meal!</p>
+    </section>
 
-  <!-- Modal -->
-  <div id="recipeModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 id="modalTitle"></h2>
-      <p><strong>Health:</strong> <span id="modalHealth"></span></p>
-      <p><strong>Allergy:</strong> <span id="modalAllergy"></span></p>
-      <p><strong>Ingredients:</strong></p>
-      <ul id="modalIngredients"></ul>
-      <p><strong>Instructions:</strong></p>
-      <ol id="modalInstructions"></ol>
-    </div>
-  </div>
+    <section class="allergy-warning">
+      <h2>⚠️ Allergy Warnings</h2>
+      <p><strong>Contains:</strong> eggs, wheat (flour) — please be cautious if allergic.</p>
+    </section>
+
+  </main>
 
   <footer>
     <p>© 2025 Smart Chef | Healthy Cooking for Everyone</p>
   </footer>
 
-  <script>
-    const recipes = [
-      {
-        name: "Muffins",
-        health: "⭐⭐⭐",
-        allergy: "Milk, Eggs",
-        ingredients: ["2 eggs", "125 ml oil", "250 ml milk", "200g sugar", "400g flour", "1 tsp baking powder"],
-        instructions: ["Preheat oven to 185°C.", "Mix dry ingredients in a bowl.", "Add eggs, milk, and oil, mix until smooth.", "Fill paper molds and bake for 15 min."]
-      },
-      {
-        name: "Simple Chocolate Cake",
-        health: "⭐⭐",
-        allergy: "Milk, Eggs",
-        ingredients: ["2 eggs", "200 ml milk", "150g sugar", "100 ml oil", "1 tsp baking powder", "100g chocolate", "200g flour"],
-        instructions: ["Mix wet ingredients.", "Add dry ingredients and melted chocolate.", "Bake at 180°C for 25–30 min."]
-      },
-      {
-        name: "Pizza Dough",
-        health: "⭐⭐⭐",
-        allergy: "Gluten",
-        ingredients: ["1 spoon sugar", "1/2 packet fresh yeast", "3 tbsp olive oil", "1 tsp salt", "310g flour", "230 ml hot water"],
-        instructions: ["Dissolve yeast in warm water and sugar.", "Add olive oil and salt, mix.", "Pour into flour and knead dough.", "Let rest 10–15 min, divide into 4 parts, shape pizza."]
-      },
-      {
-        name: "Classic Tomato & Cheese Pizza",
-        health: "⭐⭐",
-        allergy: "Milk",
-        ingredients: ["Pizza dough", "2-3 tomatoes", "2 tbsp tomato sauce", "1 tbsp paprika ketchup", "1 tbsp olive oil", "100–150 g cheese", "salt", "pepper"],
-        instructions: ["Blend tomatoes, mix with sauce, ketchup, oil, salt, and pepper.", "Spread on rolled dough, add cheese.", "Bake at 220°C for 10–15 min."]
-      },
-      {
-        name: "Ajvar & Cheese Pizza",
-        health: "⭐⭐⭐",
-        allergy: "Milk",
-        ingredients: ["Pizza dough", "3 tbsp ajvar", "2 tbsp paprika ketchup", "1 tbsp olive oil", "100–150 g cheese", "optional tomato slices"],
-        instructions: ["Mix ajvar, ketchup, and oil.", "Spread on dough, top with cheese (and tomato slices).", "Bake at 220°C for 10–15 min."]
-      }
-    ];
-
-    const container = document.getElementById('recipeCards');
-    recipes.forEach((recipe, index) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <h3>${recipe.name}</h3>
-        <p><strong>Health:</strong> ${recipe.health}</p>
-        <p><strong>Allergy:</strong> ${recipe.allergy}</p>
-      `;
-      card.addEventListener('click', () => showModal(index));
-      container.appendChild(card);
-    });
-
-    const modal = document.getElementById("recipeModal");
-    const closeBtn = document.querySelector(".close");
-
-    function showModal(index) {
-      const recipe = recipes[index];
-      document.getElementById("modalTitle").innerText = recipe.name;
-      document.getElementById("modalHealth").innerText = recipe.health;
-      document.getElementById("modalAllergy").innerText = recipe.allergy;
-
-      const ingList = document.getElementById("modalIngredients");
-      ingList.innerHTML = "";
-      recipe.ingredients.forEach(i => {
-        const li = document.createElement("li");
-        li.textContent = i;
-        ingList.appendChild(li);
-      });
-
-      const instrList = document.getElementById("modalInstructions");
-      instrList.innerHTML = "";
-      recipe.instructions.forEach(i => {
-        const li = document.createElement("li");
-        li.textContent = i;
-        instrList.appendChild(li);
-      });
-
-      modal.style.display = "block";
-    }
-
-    closeBtn.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
 </body>
 </html>
